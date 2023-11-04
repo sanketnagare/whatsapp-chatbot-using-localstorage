@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Whatsapp</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+
+  </head>
+  <body class="m-0 p-0 overflow-hidden">
+    <div class="wrapper d-flex justify-content-center align-content-center ">
+
+        <!-- Homescreen starts here -->
+        <div class="h-100 m-5 rounded-top-5 rounded-bottom-3 " id="homescreen">
+
+            <!-- Homescreen header -->
+            <header class="header rounded-top-2 position-relative d-flex align-content-center justify-content-between py-3 px-3">
+                <div class="logo fs-3">WhatsApp</div>
+                <div class="icons d-flex align-content-center gap-4 fs-4 pt-2">
+                    <i class="fas fa-camera"></i>
+                    <i class="fas fa-search" id="search"></i>
+                    <i class="fas fa-ellipsis-v" id="settings"></i>
+                </div>
+            </header>
+            <!-- Homescreen header end -->
+
+            <ul class="tabs m-0 pb-2 list-unstyled d-flex align-content-center py-3">
+                <li class="position-relative fs-4 text-capitalize text-white text-center opacity-75 d-flex align-content-center justify-content-center gap-3">
+                    <i class="fas fa-users pt-2"></i>
+                </li>
+                <li class="position-relative opacity-100 fs-4 text-capitalize text-white text-center d-flex align-content-center justify-content-center gap-3">chats</li>
+                <li class="position-relative fs-4 text-capitalize text-white text-center opacity-75 d-flex align-content-center justify-content-center gap-3">status</li>
+                <li class="position-relative fs-4 text-capitalize text-white text-center opacity-75 d-flex align-content-center justify-content-center gap-3">calls</li>
+            </ul>
+
+            <div id="homescreenbody" class="rounded-bottom-2 overflow-auto">
+
+            </div>
+        </div>
+        <!-- Homescreen ends here -->
+
+
+        <!-- Chatbot start here -->
+        <div class="chatbot d-none h-100 m-5 rounded-top-5 rounded-bottom-3 " id="chatscreen">
+
+            <!-- Header -->
+            <div class="chatheader h-100 p-2 rounded-top-4 top-0 d-flex justify-content-between">
+
+                <button onclick="togglescreen()" class="bg-transparent border-0">
+                    <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>
+                </button>
+                
+                <a href="#" id="view-details" class="d-flex justify-content-between align-content-center ps-2 text-decoration-none w-100" data-bs-toggle="modal" data-bs-target="#userInfoModal">
+                    
+                    <div class="d-flex ">
+                        <div id="userimg">
+
+                        </div>
+
+                        <div class="d-flex flex-column gap-0">
+                            <h5 id="username" class="text-white m-0"></h5>
+                            <span class="p-0 text-white">Online</span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex gap-4 me-2 justify-content-center align-items-center mt-2">
+                        <i class="fa-solid fa-video" style="color: #ffffff;"></i>
+                        <i class="fa-solid fa-phone" style="color: #ffffff;"></i>
+                        <i class="fa-solid fa-ellipsis-vertical" style="color: #ffffff;"></i>
+                    </div>
+                </a>
+            </div>
+            <!-- Header end -->
+
+            <!-- chat container -->
+            <div class="chat-container">
+                <div id="chatbox" class="h-100 position-relative overflow-auto">
+                    
+                    <p id="botStarterMessage" class="botText"></p>
+                </div>
+            </div>
+            <!-- chat container end -->
+        
+            <!-- footer -->
+            <div class="footer d-flex flex-row align-content-end overflow-hidden mb-2">
+
+                <div class="emoji-selector bg-white rounded-3 d-block p-0 position-absolute w-25 overflow-x-hidden ms-2" id="emojiSelector">
+                    <div class="input-container p-3 bg-white position-sticky top-0 z-3">
+                        <input id="emojiSearch" class="rounded-3 border-1  w-100 py-2 px-2 " type="text" name="" id="" placeholder="Search...">
+                    </div>
+                    <ul id="emojiList" class="emoji-list bg-white d-flex flex-row flex-wrap justify-content-start align-items-start py-1 px-3 ">
+                        
+                    </ul>
+                </div>
+
+                <!-- smile emoji -->
+                <div class="emoji h-100 d-flex justify-content-center bg-white ms-2 " id="emoji">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" id="smiley" x="3147" y="3209"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.153 11.603c.795 0 1.44-.88 1.44-1.962s-.645-1.96-1.44-1.96c-.795 0-1.44.88-1.44 1.96s.645 1.965 1.44 1.965zM5.95 12.965c-.027-.307-.132 5.218 6.062 5.55 6.066-.25 6.066-5.55 6.066-5.55-6.078 1.416-12.13 0-12.13 0zm11.362 1.108s-.67 1.96-5.05 1.96c-3.506 0-5.39-1.165-5.608-1.96 0 0 5.912 1.055 10.658 0zM11.804 1.01C5.61 1.01.978 6.034.978 12.23s4.826 10.76 11.02 10.76S23.02 18.424 23.02 12.23c0-6.197-5.02-11.22-11.216-11.22zM12 21.355c-5.273 0-9.38-3.886-9.38-9.16 0-5.272 3.94-9.547 9.214-9.547a9.548 9.548 0 0 1 9.548 9.548c0 5.272-4.11 9.16-9.382 9.16zm3.108-9.75c.795 0 1.44-.88 1.44-1.963s-.645-1.96-1.44-1.96c-.795 0-1.44.878-1.44 1.96s.645 1.963 1.44 1.963z" fill="#7d8489"/></svg>
+                </div>
+
+                <!-- input field -->
+                <div id="userInput" class="h-100 bg-white w-75">
+                    <input type="text" class="input-msg h-100 w-100 border-0" id="textInput" class="maisg" name="msg" placeholder="Type a message"></input>
+                </div>
+                
+                <!-- photo emoji -->
+                <div class="photo rounded-end-2 h-100 bg-white px-2">
+                    <i class="fa-solid fa-camera fs-4 pt-3" class="d-block " style="color: #979595;"></i>
+                </div>
+                
+                <!-- send button -->
+                <button class="bg-transparent border-0 rounded-pill " onclick="sendButton()">
+                    <img src="./images/sent.png" class="h-100 " alt="" width="48" height="48">
+                </button>
+            </div>
+            <!-- footer end -->
+           
+        </div>
+        <!-- Chatbot end here -->
+
+
+        
+        <!-- Modal -->
+        <div class="modal fade zoom-in" id="userInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom-0 pb-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-center align-content-center flex-column">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal end -->
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e6cdd9c79d.js" crossorigin="anonymous"></script>
+
+    </script>
+    <script src="index.js"></script>
+  </body>
+</html>
